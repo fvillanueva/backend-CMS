@@ -1,5 +1,6 @@
 package com.ar.villaf.backendCourseManagmentSystem.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,6 +15,7 @@ import java.util.List;
 @Table(name = "course_comment")
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Comment {
 
     @Id
@@ -33,8 +35,8 @@ public class Comment {
     @Size(max = 300, message = "Comment should be at max 300 characters")
     private String comment;
 
+    //THIS SHOULD PROB BE LAZILY FETCH
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name="comment_id")
     private List<Comment> children = new ArrayList<Comment>();
 
 }

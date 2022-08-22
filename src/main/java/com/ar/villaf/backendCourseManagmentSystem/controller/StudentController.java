@@ -27,7 +27,7 @@ public class StudentController {
 
     @GetMapping(path = "/{id}")
     public ResponseEntity<MyUser> findStudent (@PathVariable(value = "id") int id){
-        return ResponseEntity.ok(userService.findById(id,Roles.STUDENT));
+        return ResponseEntity.ok(userService.findByIdAndRole(id,Roles.STUDENT));
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)

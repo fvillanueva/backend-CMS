@@ -32,7 +32,7 @@ public class TeacherController {
 
     @GetMapping(path = "/{id}")
     public ResponseEntity<MyUser> findTeacher (@PathVariable(value = "id") int id){
-        return ResponseEntity.ok(userService.findById(id,Roles.TEACHER));
+        return ResponseEntity.ok(userService.findByIdAndRole(id,Roles.TEACHER));
     }
 
     @DeleteMapping(path = "/{id}")

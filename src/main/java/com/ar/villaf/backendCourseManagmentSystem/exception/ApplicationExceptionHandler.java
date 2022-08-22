@@ -21,27 +21,22 @@ public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler 
     public ResponseEntity<Object> handleUserNotFound (UserNotFoundException ex){
         return new ResponseEntity<>(new ErrorBody(HttpStatus.NOT_FOUND.name(), HttpStatus.NOT_FOUND.value(),Arrays.asList(ex.getMessage())), HttpStatus.NOT_FOUND);
     }
-
     @ExceptionHandler(RoleNotFoundException.class)
     public ResponseEntity<Object> handleRoleNotFound (RoleNotFoundException ex){
         return new ResponseEntity<>(new ErrorBody(HttpStatus.NOT_FOUND.name(), HttpStatus.NOT_FOUND.value(), Arrays.asList(ex.getMessage())), HttpStatus.NOT_FOUND);
     }
-
     @ExceptionHandler(CourseNotFoundException.class)
     public ResponseEntity<Object> handleCourseNotFound (CourseNotFoundException ex){
         return new ResponseEntity<>(new ErrorBody(HttpStatus.NOT_FOUND.name(), HttpStatus.NOT_FOUND.value(), Arrays.asList(ex.getMessage())), HttpStatus.NOT_FOUND);
     }
-
     @ExceptionHandler(InvalidFormatException.class)
     public ResponseEntity<Object> handleInvalidFormat (InvalidFormatException ex){
         return new ResponseEntity<>(new ErrorBody(HttpStatus.BAD_REQUEST.name(), HttpStatus.BAD_REQUEST.value(), Arrays.asList(ex.getMessage())), HttpStatus.BAD_REQUEST);
     }
-
     @ExceptionHandler(VideoAlreadyExistException.class)
     public ResponseEntity<Object> handleVideoAlreadyExist (VideoAlreadyExistException ex){
         return new ResponseEntity<>(new ErrorBody(HttpStatus.BAD_REQUEST.name(), HttpStatus.BAD_REQUEST.value(), Arrays.asList(ex.getMessage())), HttpStatus.BAD_REQUEST);
     }
-
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         List<String> errors = ex.getBindingResult()

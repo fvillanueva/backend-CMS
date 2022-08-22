@@ -1,5 +1,6 @@
 package com.ar.villaf.backendCourseManagmentSystem.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -17,6 +18,7 @@ import java.util.Set;
 @Table(name = "app_user", uniqueConstraints = @UniqueConstraint(columnNames = "username"))
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class MyUser {
 
     @Id
@@ -33,13 +35,7 @@ public class MyUser {
     @Size(max = 15, message = "password should be at max 15 characters")
     private String password;
 
-    @ManyToMany
-    @JoinTable(
-            name = "user_role",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id")
-    )
-
+    @ManyToMany(fetch = FetchType.EAGER)
     private Collection<Role> roles;
 
     @Column(name = "first_name")
@@ -65,13 +61,7 @@ public class MyUser {
     @Column(name = "country_of_birth")
     private String countryOfBirth;
 
-    @ManyToMany
-    @JoinTable(
-            name = "user_course",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "course_id")
-    )
-
+    @ManyToMany(fetch = FetchType.EAGER)
     private Set<Course> courses;
 
 }

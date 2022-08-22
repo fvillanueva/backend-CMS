@@ -1,6 +1,6 @@
 package com.ar.villaf.backendCourseManagmentSystem.entity;
 
-import com.ar.villaf.backendCourseManagmentSystem.serviceImpl.CourseServiceImpl;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Fetch;
@@ -15,6 +15,7 @@ import java.util.List;
 @Table(name = "course")
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Course {
 
     @Id
@@ -32,7 +33,6 @@ public class Course {
     private String description;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name="course_id")
     @OrderBy("id")
     private List<Video> videos;
 
@@ -41,7 +41,6 @@ public class Course {
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @Fetch(value = FetchMode.SUBSELECT)
-    @JoinColumn(name="course_id")
     private List<Comment> comments;
 
 

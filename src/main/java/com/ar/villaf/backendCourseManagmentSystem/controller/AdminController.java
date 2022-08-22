@@ -29,7 +29,7 @@ public class AdminController {
 
     @GetMapping(path = "/{id}")
     public ResponseEntity<MyUser> findAdmin (@PathVariable(value = "id") int id){
-        return ResponseEntity.ok(userService.findById(id,Roles.ADMIN));
+        return ResponseEntity.ok(userService.findByIdAndRole(id,Roles.ADMIN));
     }
 
 }

@@ -9,11 +9,9 @@ import com.ar.villaf.backendCourseManagmentSystem.exception.VideoAlreadyExistExc
 import com.ar.villaf.backendCourseManagmentSystem.repository.CourseRepository;
 import com.ar.villaf.backendCourseManagmentSystem.service.CourseService;
 import org.apache.tomcat.util.http.fileupload.FileUtils;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.persistence.PostRemove;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;

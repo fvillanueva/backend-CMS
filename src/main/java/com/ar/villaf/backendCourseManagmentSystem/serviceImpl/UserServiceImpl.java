@@ -7,6 +7,7 @@ import com.ar.villaf.backendCourseManagmentSystem.exception.UserNotFoundExceptio
 import com.ar.villaf.backendCourseManagmentSystem.repository.RoleRepository;
 import com.ar.villaf.backendCourseManagmentSystem.repository.UserRepository;
 import com.ar.villaf.backendCourseManagmentSystem.service.UserService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,9 +31,14 @@ public class UserServiceImpl implements UserService {
                 .filter(n -> n.getRoles().contains(role)).collect(Collectors.toList());
     }
 
-    public MyUser findById (int id, String roleName) {
+    public MyUser findByIdAndRole (int id, String roleName) {
         Role role = roleRepository.findRoleByName(roleName).orElseThrow(() -> new RoleNotFoundException(roleName));
         return userRepository.findById(id).filter(u -> u.getRoles().contains(role)).orElseThrow(() -> new UserNotFoundException(id));
+    }
+
+    @Override
+    public MyUser findByUsername(String username) {
+        return userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("Username " + username + "not found"));
     }
 
     public MyUser saveUserRegistration (MyUser user, String roleName) {
