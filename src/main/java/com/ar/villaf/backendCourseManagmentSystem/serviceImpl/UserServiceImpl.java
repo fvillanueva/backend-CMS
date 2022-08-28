@@ -7,7 +7,6 @@ import com.ar.villaf.backendCourseManagmentSystem.exception.UserNotFoundExceptio
 import com.ar.villaf.backendCourseManagmentSystem.repository.RoleRepository;
 import com.ar.villaf.backendCourseManagmentSystem.repository.UserRepository;
 import com.ar.villaf.backendCourseManagmentSystem.service.UserService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,27 +24,26 @@ public class UserServiceImpl implements UserService {
         this.roleRepository = roleRepository;
     }
 
-    public List<MyUser> findAllByRole(String roleName){
-        Role role = roleRepository.findRoleByName(roleName).orElseThrow(() -> new RoleNotFoundException(roleName));
+    public List<MyUser> getUsersByRole(String roleName){
+        Role role = roleRepository.findByName(roleName).orElseThrow(() -> new RoleNotFoundException(roleName));
         return userRepository.findAll().stream()
                 .filter(n -> n.getRoles().contains(role)).collect(Collectors.toList());
     }
 
-    public MyUser findByIdAndRole (int id, String roleName) {
-        Role role = roleRepository.findRoleByName(roleName).orElseThrow(() -> new RoleNotFoundException(roleName));
-        return userRepository.findById(id).filter(u -> u.getRoles().contains(role)).orElseThrow(() -> new UserNotFoundException(id));
+    public MyUser getUserById(int id) {
+        return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
     }
 
-    @Override
-    public MyUser findByUsername(String username) {
-        return userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("Username " + username + "not found"));
-    }
-
-    public MyUser saveUserRegistration (MyUser user, String roleName) {
-        Role role = roleRepository.findRoleByName(roleName).
-                orElseThrow(() -> new RoleNotFoundException(roleName));
-        user.setRoles(List.of(role));
+    public MyUser saveUser(MyUser user) {
         return userRepository.save(user);
+    }
+
+    public Role saveRole(Role role) {
+        return null;
+    }
+
+    public void addRoleToUser(String username, String roleName) {
+
     }
 
     public void deleteUserById(int userId) {
