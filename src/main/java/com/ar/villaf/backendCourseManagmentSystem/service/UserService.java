@@ -1,14 +1,18 @@
 package com.ar.villaf.backendCourseManagmentSystem.service;
 
-import com.ar.villaf.backendCourseManagmentSystem.entity.MyUser;
+import com.ar.villaf.backendCourseManagmentSystem.entity.AppUser;
+import com.ar.villaf.backendCourseManagmentSystem.entity.Role;
 
 import java.util.List;
 
 public interface UserService {
 
-    List<MyUser> findAllByRole(String role);
-    MyUser saveUserRegistration(MyUser user, String roleName);
+    //TODO EVENTUALLY CHANGE TO RETURN A PAGE OF USERS
+    List<AppUser> getUsersByRole(String role);
+    AppUser saveUser(AppUser user);
+    Role saveRole(Role role);
+    void addRoleToUser(String username, String roleName);
     void deleteUserById(int userId);
-    MyUser findByIdAndRole (int id, String role);
-    MyUser findByUsername (String username);
+    AppUser getUserById(int id);
+
 }

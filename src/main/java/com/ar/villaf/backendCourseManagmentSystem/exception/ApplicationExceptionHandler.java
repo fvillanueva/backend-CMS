@@ -17,24 +17,24 @@ import java.util.stream.Collectors;
 @ControllerAdvice
 public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(UserNotFoundException.class)
-    public ResponseEntity<Object> handleUserNotFound (UserNotFoundException ex){
+    @ExceptionHandler(UserIdNotFoundException.class)
+    public ResponseEntity<Object> handleUserNotFound (UserIdNotFoundException ex){
         return new ResponseEntity<>(new ErrorBody(HttpStatus.NOT_FOUND.name(), HttpStatus.NOT_FOUND.value(),Arrays.asList(ex.getMessage())), HttpStatus.NOT_FOUND);
     }
-    @ExceptionHandler(RoleNotFoundException.class)
-    public ResponseEntity<Object> handleRoleNotFound (RoleNotFoundException ex){
+    @ExceptionHandler(RoleNameNotFoundException.class)
+    public ResponseEntity<Object> handleRoleNotFound (RoleNameNotFoundException ex){
         return new ResponseEntity<>(new ErrorBody(HttpStatus.NOT_FOUND.name(), HttpStatus.NOT_FOUND.value(), Arrays.asList(ex.getMessage())), HttpStatus.NOT_FOUND);
     }
-    @ExceptionHandler(CourseNotFoundException.class)
-    public ResponseEntity<Object> handleCourseNotFound (CourseNotFoundException ex){
+    @ExceptionHandler(CourseIdNotFoundException.class)
+    public ResponseEntity<Object> handleCourseNotFound (CourseIdNotFoundException ex){
         return new ResponseEntity<>(new ErrorBody(HttpStatus.NOT_FOUND.name(), HttpStatus.NOT_FOUND.value(), Arrays.asList(ex.getMessage())), HttpStatus.NOT_FOUND);
     }
     @ExceptionHandler(InvalidFormatException.class)
     public ResponseEntity<Object> handleInvalidFormat (InvalidFormatException ex){
         return new ResponseEntity<>(new ErrorBody(HttpStatus.BAD_REQUEST.name(), HttpStatus.BAD_REQUEST.value(), Arrays.asList(ex.getMessage())), HttpStatus.BAD_REQUEST);
     }
-    @ExceptionHandler(VideoAlreadyExistException.class)
-    public ResponseEntity<Object> handleVideoAlreadyExist (VideoAlreadyExistException ex){
+    @ExceptionHandler(VideoNameDuplicatedException.class)
+    public ResponseEntity<Object> handleVideoAlreadyExist (VideoNameDuplicatedException ex){
         return new ResponseEntity<>(new ErrorBody(HttpStatus.BAD_REQUEST.name(), HttpStatus.BAD_REQUEST.value(), Arrays.asList(ex.getMessage())), HttpStatus.BAD_REQUEST);
     }
     @Override

@@ -37,7 +37,7 @@ public class Course {
     private List<Video> videos;
 
     @ManyToMany(mappedBy = "courses", cascade = CascadeType.REMOVE)
-    private List<MyUser> users;
+    private List<AppUser> users;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @Fetch(value = FetchMode.SUBSELECT)
