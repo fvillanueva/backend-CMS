@@ -1,0 +1,18 @@
+spring:
+    datasource:
+        password: ''
+        url: jdbc:postgresql://localhost:5432/backend_cms
+        username: ''
+    jpa:
+        hibernate:
+            ddl-auto: update
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.PostgreSQLDialect
+        show-sql: true
+    servlet:
+        multipart:
+            max-file-size: 2GB
+            max-request-size: 2GB
+videos:
+    path: /Users/fvillanueva/Documents/videos/

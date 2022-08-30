@@ -1,8 +1,10 @@
 package com.ar.villaf.backendCourseManagmentSystem.controller;
 
 import com.ar.villaf.backendCourseManagmentSystem.entity.AppUser;
+import com.ar.villaf.backendCourseManagmentSystem.entity.Role;
 import com.ar.villaf.backendCourseManagmentSystem.entity.Roles;
 import com.ar.villaf.backendCourseManagmentSystem.service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,28 +13,37 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/api/v1/users", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(path = "/api/v1", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequiredArgsConstructor
 public class UserController {
 
     private final UserService userService;
 
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
-
-    @GetMapping
+    @GetMapping(path = "/users")
     public ResponseEntity<List<AppUser>> findAllUsers (){
         return ResponseEntity.ok(userService.getUsersByRole(Roles.STUDENT));
     }
-    @GetMapping(path = "/{id}")
+    @GetMapping(path = "/user/{id}")
     public ResponseEntity<AppUser> findUser (@PathVariable(value = "id") int id){
         return ResponseEntity.ok(userService.getUserById(id));
     }
-    @PostMapping(path = "/create", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(path = "/user/save", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<AppUser> saveUser(@RequestBody @Valid AppUser user){
         return ResponseEntity.ok(userService.saveUser(user));
     }
-    @DeleteMapping(path = "delete/{id}")
+
+    @PostMapping(path = "/role/save", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Role> saveRole(@RequestBody @Valid Role role){
+        return ResponseEntity.ok(userService.saveRole(role));
+    }
+
+    @PostMapping(path = "/role/addToUser", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> addRoleToUser(String roleName, String username){
+        userService.addRoleToUser(username,roleName);
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping(path = "/users/delete/{id}")
     public ResponseEntity<String> deleteUser (@PathVariable(value = "id") int id){
         userService.deleteUserById(id);
         return ResponseEntity.ok("User with id " + id + " deleted");
