@@ -3,6 +3,7 @@ package com.ar.villaf.backendCourseManagmentSystem.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.*;
 import java.io.File;
@@ -12,6 +13,7 @@ import java.io.File;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Slf4j
 public class Video {
 
     @Id
@@ -33,6 +35,8 @@ public class Video {
     @PreRemove
     private void deleteVideoFromFolder () {
         File video = new File(this.videoPath);
-        video.delete();
+        boolean delete = video.delete();
+        if (!delete)
+            log.error("Video: \"{}\" not found.", video.getName());
     }
 }
