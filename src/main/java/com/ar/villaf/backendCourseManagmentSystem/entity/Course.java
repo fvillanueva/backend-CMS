@@ -20,7 +20,7 @@ public class Course {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @NotBlank(message = "Course name should not be blank")
     @Size(min = 3, message = "Course name should be at least 3 characters")

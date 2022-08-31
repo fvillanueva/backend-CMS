@@ -23,10 +23,10 @@ public class AppUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @NotBlank(message = "username should not be blank")
-    @Size(min = 6, message = "username should be at least 6 characters")
+    @Size(min = 5, message = "username should be at least 6 characters")
     @Size(max = 15, message = "username should be at max 15 characters")
     private String username;
 
@@ -55,7 +55,6 @@ public class AppUser {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "date_of_birth")
     @PastOrPresent
-    @NotBlank(message = "Date of birth should not be blank")
     private LocalDate dateOfBirth;
 
     @Column(name = "country_of_birth")

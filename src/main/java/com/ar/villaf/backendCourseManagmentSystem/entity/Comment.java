@@ -21,7 +21,7 @@ public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private Long id;
 
     @Column(name = "date")
     private LocalDate date;
@@ -37,6 +37,6 @@ public class Comment {
 
     //THIS SHOULD PROB BE LAZILY FETCH
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Comment> children = new ArrayList<Comment>();
+    private List<Comment> children = new ArrayList<>();
 
 }

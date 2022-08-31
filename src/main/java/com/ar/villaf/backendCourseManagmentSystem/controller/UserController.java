@@ -2,7 +2,7 @@ package com.ar.villaf.backendCourseManagmentSystem.controller;
 
 import com.ar.villaf.backendCourseManagmentSystem.entity.AppUser;
 import com.ar.villaf.backendCourseManagmentSystem.entity.Role;
-import com.ar.villaf.backendCourseManagmentSystem.entity.Roles;
+import com.ar.villaf.backendCourseManagmentSystem.entity.RolesConstants;
 import com.ar.villaf.backendCourseManagmentSystem.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
@@ -21,7 +21,7 @@ public class UserController {
 
     @GetMapping(path = "/users")
     public ResponseEntity<List<AppUser>> findAllUsers (){
-        return ResponseEntity.ok(userService.getUsersByRole(Roles.STUDENT));
+        return ResponseEntity.ok(userService.getUsersByRole(RolesConstants.STUDENT));
     }
     @GetMapping(path = "/user/{id}")
     public ResponseEntity<AppUser> findUser (@PathVariable(value = "id") int id){
