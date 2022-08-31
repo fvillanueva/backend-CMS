@@ -1,6 +1,5 @@
 package com.ar.villaf.backendCourseManagmentSystem.controller;
 
-import com.ar.villaf.backendCourseManagmentSystem.config.CustomProperties;
 import com.ar.villaf.backendCourseManagmentSystem.entity.Course;
 import com.ar.villaf.backendCourseManagmentSystem.service.CourseService;
 import lombok.RequiredArgsConstructor;

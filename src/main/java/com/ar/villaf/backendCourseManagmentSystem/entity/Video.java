@@ -14,6 +14,7 @@ import java.io.File;
 @NoArgsConstructor
 @AllArgsConstructor
 @Slf4j
+@SuppressWarnings("unused")
 public class Video {
 
     @Id
