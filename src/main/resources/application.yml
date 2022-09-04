@@ -1,11 +1,11 @@
 spring:
     datasource:
-        password: ''
         url: jdbc:postgresql://localhost:5432/backend_cms
         username: ''
+        password: ''
     jpa:
         hibernate:
-            ddl-auto: create
+            ddl-auto: update
         show-sql: true
         properties:
             hibernate:

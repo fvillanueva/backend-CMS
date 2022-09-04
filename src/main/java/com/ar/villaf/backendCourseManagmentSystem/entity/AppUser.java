@@ -31,8 +31,6 @@ public class AppUser {
     private String username;
 
     @NotBlank(message = "password should not be blank")
-    @Size(min = 6, message = "password should be at least 6 characters")
-    @Size(max = 15, message = "password should be at max 15 characters")
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER)

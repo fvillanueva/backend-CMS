@@ -8,20 +8,36 @@ import com.ar.villaf.backendCourseManagmentSystem.repository.RoleRepository;
 import com.ar.villaf.backendCourseManagmentSystem.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service @RequiredArgsConstructor @Transactional @Slf4j
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService, UserDetailsService {
 
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
 
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Optional<AppUser> user = userRepository.findByUsername(username);
+        if(user.isEmpty()){
+            log.error("User {} not found in the database", username);
+            throw new UsernameNotFoundException("User " + username + " not found in the database");
+        }else {
+            log.info("User {} found in the database", username);
+        }
+        Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+        user.get().getRoles().forEach(role -> authorities.add(new SimpleGrantedAuthority(role.getName())));
+        return new User(user.get().getUsername(), user.get().getPassword(), authorities);
+    }
     public List<AppUser> getUsersByRole(String roleName){
         log.info("Fetching users with role {}", roleName);
         Role role = roleRepository.findByName(roleName).orElseThrow(() -> new RoleNameNotFoundException(roleName));
