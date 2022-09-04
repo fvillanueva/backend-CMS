@@ -19,9 +19,17 @@ public class UserController {
 
     private final UserService userService;
 
-    @GetMapping(path = "/users")
-    public ResponseEntity<List<AppUser>> findAllUsers (){
+    @GetMapping(path = "/users/students")
+    public ResponseEntity<List<AppUser>> findAllStudents (){
         return ResponseEntity.ok(userService.getUsersByRole(RolesConstants.STUDENT));
+    }
+    @GetMapping(path = "/users/teachers")
+    public ResponseEntity<List<AppUser>> findAllTeachers (){
+        return ResponseEntity.ok(userService.getUsersByRole(RolesConstants.TEACHER));
+    }
+    @GetMapping(path = "/users/admins")
+    public ResponseEntity<List<AppUser>> findAllAdmins (){
+        return ResponseEntity.ok(userService.getUsersByRole(RolesConstants.ADMIN));
     }
     @GetMapping(path = "/user/{id}")
     public ResponseEntity<AppUser> findUser (@PathVariable(value = "id") int id){

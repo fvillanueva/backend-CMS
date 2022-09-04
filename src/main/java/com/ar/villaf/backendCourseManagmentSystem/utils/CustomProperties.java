@@ -1,4 +1,4 @@
-package com.ar.villaf.backendCourseManagmentSystem.config;
+package com.ar.villaf.backendCourseManagmentSystem.utils;
 
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;

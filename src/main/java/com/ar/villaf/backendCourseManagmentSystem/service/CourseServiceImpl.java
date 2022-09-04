@@ -1,6 +1,6 @@
 package com.ar.villaf.backendCourseManagmentSystem.service;
 
-import com.ar.villaf.backendCourseManagmentSystem.config.CustomProperties;
+import com.ar.villaf.backendCourseManagmentSystem.utils.CustomProperties;
 import com.ar.villaf.backendCourseManagmentSystem.entity.Course;
 import com.ar.villaf.backendCourseManagmentSystem.entity.Video;
 import com.ar.villaf.backendCourseManagmentSystem.exception.CourseIdNotFoundException;

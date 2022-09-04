@@ -22,6 +22,7 @@ public class BackendCourseManagmentSystemApplication {
 	@Bean
 	CommandLineRunner run (UserService userService) {
 		return  args -> {
+			/*
 			userService.saveRole(new Role(null, RolesConstants.STUDENT));
 			userService.saveRole(new Role(null, RolesConstants.ADMIN));
 			userService.saveRole(new Role(null, RolesConstants.TEACHER));
@@ -42,7 +43,7 @@ public class BackendCourseManagmentSystemApplication {
 
 			userService.addRoleToUser("student", RolesConstants.STUDENT);
 			userService.addRoleToUser("teacher", RolesConstants.TEACHER);
-
+			*/
 		};
 	}
 }
