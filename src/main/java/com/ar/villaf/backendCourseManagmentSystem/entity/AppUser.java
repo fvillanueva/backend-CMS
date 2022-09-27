@@ -44,7 +44,7 @@ public class AppUser {
     @NotBlank(message = "last name should not be blank")
     private String lastName;
 
-    private String gender;
+    private Gender gender;
 
     @Email
     @NotBlank(message = "email should not be blank")

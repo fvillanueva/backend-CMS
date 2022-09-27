@@ -2,7 +2,7 @@ package com.ar.villaf.backendCourseManagmentSystem.controller;
 
 import com.ar.villaf.backendCourseManagmentSystem.entity.AppUser;
 import com.ar.villaf.backendCourseManagmentSystem.entity.Role;
-import com.ar.villaf.backendCourseManagmentSystem.entity.RolesConstants;
+import com.ar.villaf.backendCourseManagmentSystem.entity.RoleName;
 import com.ar.villaf.backendCourseManagmentSystem.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
@@ -27,15 +27,15 @@ public class UserController {
 
     @GetMapping(path = "/users/students")
     public ResponseEntity<List<AppUser>> findAllStudents (){
-        return ResponseEntity.ok(userService.getUsersByRole(RolesConstants.STUDENT));
+        return ResponseEntity.ok(userService.getUsersByRole(String.valueOf(RoleName.ROLE_STUDENT)));
     }
     @GetMapping(path = "/users/teachers")
     public ResponseEntity<List<AppUser>> findAllTeachers (){
-        return ResponseEntity.ok(userService.getUsersByRole(RolesConstants.TEACHER));
+        return ResponseEntity.ok(userService.getUsersByRole(String.valueOf(RoleName.ROLE_TEACHER)));
     }
     @GetMapping(path = "/users/admins")
     public ResponseEntity<List<AppUser>> findAllAdmins (){
-        return ResponseEntity.ok(userService.getUsersByRole(RolesConstants.ADMIN));
+        return ResponseEntity.ok(userService.getUsersByRole(String.valueOf(RoleName.ROLE_ADMIN)));
     }
     @GetMapping(path = "/user/{id}")
     public ResponseEntity<AppUser> findUser (@PathVariable(value = "id") int id){
