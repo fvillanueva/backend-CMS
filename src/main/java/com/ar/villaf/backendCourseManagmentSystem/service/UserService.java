@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface UserService {
 
-    //TODO EVENTUALLY CHANGE TO RETURN A PAGE OF USERS
+    //TODO CHANGE TO RETURN A PAGE OF USERS
     List<AppUser> getUsersByRole(String role);
     AppUser saveUser(AppUser user);
     Role saveRole(Role role);

@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -18,6 +19,11 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService;
+
+    @GetMapping
+    public ResponseEntity<String> helloUser (Principal principal){
+        return ResponseEntity.ok("Hello, " + principal.getName());
+    }
 
     @GetMapping(path = "/users/students")
     public ResponseEntity<List<AppUser>> findAllStudents (){

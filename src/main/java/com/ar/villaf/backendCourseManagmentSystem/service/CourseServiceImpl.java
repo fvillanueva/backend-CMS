@@ -1,6 +1,6 @@
 package com.ar.villaf.backendCourseManagmentSystem.service;
 
-import com.ar.villaf.backendCourseManagmentSystem.utils.CustomProperties;
+import com.ar.villaf.backendCourseManagmentSystem.config.VideoProperties;
 import com.ar.villaf.backendCourseManagmentSystem.entity.Course;
 import com.ar.villaf.backendCourseManagmentSystem.entity.Video;
 import com.ar.villaf.backendCourseManagmentSystem.exception.CourseIdNotFoundException;
@@ -24,7 +24,7 @@ import java.util.Optional;
 public class CourseServiceImpl implements CourseService {
 
     private final CourseRepository courseRepository;
-    private final CustomProperties customProperties;
+    private final VideoProperties videoProperties;
 
     public List<Course> findAll () {
         log.info("Fetching all courses");
@@ -43,7 +43,7 @@ public class CourseServiceImpl implements CourseService {
             throw new CourseIdNotFoundException(id);
         courseRepository.deleteById(id);
         try {
-            FileUtils.deleteDirectory(new File(customProperties.getVideosPath()+"/"+id));
+            FileUtils.deleteDirectory(new File(videoProperties.getPath()+"/"+id));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -58,7 +58,7 @@ public class CourseServiceImpl implements CourseService {
         Course course = findCourseById(courseId);
         validateVideo(video, course, videoName);
         log.info("Uploading video {} to the couse {}", videoName, course.getName());
-        String pathStr = customProperties.getVideosPath()+courseId+"/"+video.getOriginalFilename();
+        String pathStr = videoProperties.getPath()+courseId+"/"+video.getOriginalFilename();
         File path = new File(pathStr);
         try {
             video.transferTo(path);
