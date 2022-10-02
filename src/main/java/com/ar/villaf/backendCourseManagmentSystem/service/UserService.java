@@ -4,6 +4,7 @@ import com.ar.villaf.backendCourseManagmentSystem.exception.RoleNameNotFoundExce
 import com.ar.villaf.backendCourseManagmentSystem.exception.UserIdNotFoundException;
 import com.ar.villaf.backendCourseManagmentSystem.model.AppUser;
 import com.ar.villaf.backendCourseManagmentSystem.model.Role;
+import com.ar.villaf.backendCourseManagmentSystem.model.RoleName;
 import com.ar.villaf.backendCourseManagmentSystem.repository.RoleRepository;
 import com.ar.villaf.backendCourseManagmentSystem.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -45,10 +46,10 @@ public class UserService {
         return roleRepository.save(role);
     }
 
-    public void addRoleToUser(String username, String roleName) {
+    public void addRoleToUser(String username, RoleName roleName) {
         log.info("Adding role {} to the user {}", roleName, username);
         AppUser user = userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("Username " + username + " not found"));
-        Role role = roleRepository.findByName(roleName).orElseThrow(() -> new RoleNameNotFoundException(roleName));
+        Role role = roleRepository.findByName(roleName.toString()).orElseThrow(() -> new RoleNameNotFoundException(roleName.toString()));
         user.getRoles().add(role);
     }
 

@@ -27,15 +27,15 @@ public class UserController {
 
     @GetMapping(path = "/users/students")
     public ResponseEntity<List<AppUser>> findAllStudents (){
-        return ResponseEntity.ok(userService.getUsersByRole(String.valueOf(RoleName.ROLE_STUDENT)));
+        return ResponseEntity.ok(userService.getUsersByRole(String.valueOf(RoleName.STUDENT)));
     }
     @GetMapping(path = "/users/teachers")
     public ResponseEntity<List<AppUser>> findAllTeachers (){
-        return ResponseEntity.ok(userService.getUsersByRole(String.valueOf(RoleName.ROLE_TEACHER)));
+        return ResponseEntity.ok(userService.getUsersByRole(String.valueOf(RoleName.TEACHER)));
     }
     @GetMapping(path = "/users/admins")
     public ResponseEntity<List<AppUser>> findAllAdmins (){
-        return ResponseEntity.ok(userService.getUsersByRole(String.valueOf(RoleName.ROLE_ADMIN)));
+        return ResponseEntity.ok(userService.getUsersByRole(String.valueOf(RoleName.ADMIN)));
     }
     @GetMapping(path = "/user/{id}")
     public ResponseEntity<AppUser> findUser (@PathVariable(value = "id") int id){
@@ -52,7 +52,7 @@ public class UserController {
     }
 
     @PostMapping(path = "/role/addToUser", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> addRoleToUser(String roleName, String username){
+    public ResponseEntity<?> addRoleToUser(RoleName roleName, String username){
         userService.addRoleToUser(username,roleName);
         return ResponseEntity.ok().build();
     }

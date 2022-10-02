@@ -15,6 +15,7 @@ import java.util.List;
 @Table(name = "course_comment")
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Comment {
 
     @Id

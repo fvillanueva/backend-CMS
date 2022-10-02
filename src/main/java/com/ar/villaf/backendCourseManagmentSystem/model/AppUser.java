@@ -18,6 +18,7 @@ import java.util.Set;
 @Table(name = "app_user", uniqueConstraints = @UniqueConstraint(columnNames = "username"))
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class AppUser {
 
     @Id
