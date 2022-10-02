@@ -1,4 +1,4 @@
-package com.ar.villaf.backendCourseManagmentSystem.entity;
+package com.ar.villaf.backendCourseManagmentSystem.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,7 +15,6 @@ import java.util.List;
 @Table(name = "course")
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 public class Course {
 
     @Id

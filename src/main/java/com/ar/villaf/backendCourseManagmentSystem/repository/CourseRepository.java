@@ -1,6 +1,6 @@
 package com.ar.villaf.backendCourseManagmentSystem.repository;
 
-import com.ar.villaf.backendCourseManagmentSystem.entity.Course;
+import com.ar.villaf.backendCourseManagmentSystem.model.Course;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

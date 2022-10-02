@@ -1,4 +1,4 @@
-package com.ar.villaf.backendCourseManagmentSystem.entity;
+package com.ar.villaf.backendCourseManagmentSystem.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,7 +18,6 @@ import java.util.Set;
 @Table(name = "app_user", uniqueConstraints = @UniqueConstraint(columnNames = "username"))
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 public class AppUser {
 
     @Id
@@ -44,6 +43,7 @@ public class AppUser {
     @NotBlank(message = "last name should not be blank")
     private String lastName;
 
+    @Enumerated(EnumType.STRING)
     private Gender gender;
 
     @Email

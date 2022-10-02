@@ -1,6 +1,6 @@
 package com.ar.villaf.backendCourseManagmentSystem.controller;
 
-import com.ar.villaf.backendCourseManagmentSystem.entity.Course;
+import com.ar.villaf.backendCourseManagmentSystem.model.Course;
 import com.ar.villaf.backendCourseManagmentSystem.service.CourseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;

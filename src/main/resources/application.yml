@@ -17,3 +17,6 @@ spring:
             max-request-size: 2GB
 video:
     path: /Users/fvillanueva/Documents/videos/
+rsa:
+    private-key: classpath:certs/private.pem
+    public-key: classpath:certs/public.pem

@@ -1,8 +1,8 @@
 package com.ar.villaf.backendCourseManagmentSystem.controller;
 
-import com.ar.villaf.backendCourseManagmentSystem.entity.AppUser;
-import com.ar.villaf.backendCourseManagmentSystem.entity.Role;
-import com.ar.villaf.backendCourseManagmentSystem.entity.RoleName;
+import com.ar.villaf.backendCourseManagmentSystem.model.AppUser;
+import com.ar.villaf.backendCourseManagmentSystem.model.Role;
+import com.ar.villaf.backendCourseManagmentSystem.model.RoleName;
 import com.ar.villaf.backendCourseManagmentSystem.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;

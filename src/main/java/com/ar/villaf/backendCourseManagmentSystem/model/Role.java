@@ -1,4 +1,4 @@
-package com.ar.villaf.backendCourseManagmentSystem.entity;
+package com.ar.villaf.backendCourseManagmentSystem.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,13 +10,13 @@ import javax.persistence.*;
 @Table(name = "role", uniqueConstraints = @UniqueConstraint(columnNames = "name"))
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Enumerated(EnumType.STRING)
     private RoleName name;
 
 }

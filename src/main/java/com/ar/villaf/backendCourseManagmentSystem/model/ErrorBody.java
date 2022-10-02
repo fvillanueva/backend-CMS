@@ -1,4 +1,4 @@
-package com.ar.villaf.backendCourseManagmentSystem.entity;
+package com.ar.villaf.backendCourseManagmentSystem.model;
 
 import lombok.Data;
 

@@ -1,6 +1,5 @@
-package com.ar.villaf.backendCourseManagmentSystem.entity;
+package com.ar.villaf.backendCourseManagmentSystem.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -12,9 +11,7 @@ import java.io.File;
 @Table(name = "course_video")
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 @Slf4j
-@SuppressWarnings("unused")
 public class Video {
 
     @Id
@@ -34,6 +31,7 @@ public class Video {
     }
 
     @PreRemove
+    @SuppressWarnings("unused")
     private void deleteVideoFromFolder () {
         File video = new File(this.videoPath);
         boolean delete = video.delete();
