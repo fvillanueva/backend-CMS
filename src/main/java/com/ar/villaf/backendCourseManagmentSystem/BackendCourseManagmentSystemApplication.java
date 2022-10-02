@@ -27,13 +27,13 @@ public class BackendCourseManagmentSystemApplication {
 			userService.saveRole(new Role(null, RoleName.TEACHER));
 
 			userService.saveUser(new AppUser(null, "admin", "pass123", null,
-					"Facundo", "Villanueva", Gender.MALE, "facundovillanueva97@gmail.com",
+					"Facundo", "Villanueva", Gender.MALE, "test@gmail.com",
 					LocalDate.of(1997,11,19), "Argentina", null));
 			userService.saveUser(new AppUser(null, "student", "pass123", null,
-					"Student", "Student", Gender.MALE, "facundovillanueva97@gmail.com",
+					"Student", "Student", Gender.MALE, "test@gmail.com",
 					LocalDate.of(1997,11,19), "Argentina", null));
 			userService.saveUser(new AppUser(null, "teacher", "pass123", null,
-					"Teacher", "Teacher", Gender.MALE, "facundovillanueva97@gmail.com",
+					"Teacher", "Teacher", Gender.MALE, "test@gmail.com",
 					LocalDate.of(1997,11,19), "Argentina", null));
 
 			userService.addRoleToUser("admin", RoleName.ADMIN);
