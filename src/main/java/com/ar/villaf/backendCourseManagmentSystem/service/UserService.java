@@ -24,9 +24,9 @@ public class UserService {
     private final RoleRepository roleRepository;
 
 
-    public List<AppUser> getUsersByRole(String roleName){
+    public List<AppUser> getUsersByRole(RoleName roleName){
         log.info("Fetching users with role {}", roleName);
-        Role role = roleRepository.findByName(roleName).orElseThrow(() -> new RoleNameNotFoundException(roleName));
+        Role role = roleRepository.findByName(roleName).orElseThrow(() -> new RoleNameNotFoundException(roleName.toString()));
         return userRepository.findAll().stream()
                 .filter(n -> n.getRoles().contains(role)).collect(Collectors.toList());
     }
@@ -49,7 +49,7 @@ public class UserService {
     public void addRoleToUser(String username, RoleName roleName) {
         log.info("Adding role {} to the user {}", roleName, username);
         AppUser user = userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("Username " + username + " not found"));
-        Role role = roleRepository.findByName(roleName.toString()).orElseThrow(() -> new RoleNameNotFoundException(roleName.toString()));
+        Role role = roleRepository.findByName(roleName).orElseThrow(() -> new RoleNameNotFoundException(roleName.toString()));
         user.getRoles().add(role);
     }
 

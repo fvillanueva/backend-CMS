@@ -27,15 +27,15 @@ public class UserController {
 
     @GetMapping(path = "/users/students")
     public ResponseEntity<List<AppUser>> findAllStudents (){
-        return ResponseEntity.ok(userService.getUsersByRole(String.valueOf(RoleName.STUDENT)));
+        return ResponseEntity.ok(userService.getUsersByRole(RoleName.STUDENT));
     }
     @GetMapping(path = "/users/teachers")
     public ResponseEntity<List<AppUser>> findAllTeachers (){
-        return ResponseEntity.ok(userService.getUsersByRole(String.valueOf(RoleName.TEACHER)));
+        return ResponseEntity.ok(userService.getUsersByRole(RoleName.TEACHER));
     }
     @GetMapping(path = "/users/admins")
     public ResponseEntity<List<AppUser>> findAllAdmins (){
-        return ResponseEntity.ok(userService.getUsersByRole(String.valueOf(RoleName.ADMIN)));
+        return ResponseEntity.ok(userService.getUsersByRole(RoleName.ADMIN));
     }
     @GetMapping(path = "/user/{id}")
     public ResponseEntity<AppUser> findUser (@PathVariable(value = "id") int id){
