@@ -9,6 +9,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.time.LocalDate;
 
@@ -20,19 +21,19 @@ public class BackendCourseManagmentSystemApplication {
 	}
 
 	@Bean
-	CommandLineRunner run (UserService userService) {
+	CommandLineRunner run (UserService userService, BCryptPasswordEncoder bCryptPasswordEncoder) {
 		return  args -> {
 			userService.saveRole(new Role(null, RoleName.ADMIN));
 			userService.saveRole(new Role(null, RoleName.STUDENT));
 			userService.saveRole(new Role(null, RoleName.TEACHER));
 
-			userService.saveUser(new AppUser(null, "admin", "pass123", null,
+			userService.saveUser(new AppUser(null, "admin", bCryptPasswordEncoder.encode("pass123"), null,
 					"Facundo", "Villanueva", Gender.MALE, "test@gmail.com",
 					LocalDate.of(1997,11,19), "Argentina", null));
-			userService.saveUser(new AppUser(null, "student", "pass123", null,
+			userService.saveUser(new AppUser(null, "student", bCryptPasswordEncoder.encode("pass123"), null,
 					"Student", "Student", Gender.MALE, "test@gmail.com",
 					LocalDate.of(1997,11,19), "Argentina", null));
-			userService.saveUser(new AppUser(null, "teacher", "pass123", null,
+			userService.saveUser(new AppUser(null, "teacher", bCryptPasswordEncoder.encode("pass123"), null,
 					"Teacher", "Teacher", Gender.MALE, "test@gmail.com",
 					LocalDate.of(1997,11,19), "Argentina", null));
 

@@ -1,6 +1,6 @@
 package com.ar.villaf.backendCourseManagmentSystem.service;
 
-import com.ar.villaf.backendCourseManagmentSystem.config.VideoProperties;
+import com.ar.villaf.backendCourseManagmentSystem.properties.VideoProperties;
 import com.ar.villaf.backendCourseManagmentSystem.model.Course;
 import com.ar.villaf.backendCourseManagmentSystem.model.Video;
 import com.ar.villaf.backendCourseManagmentSystem.exception.CourseIdNotFoundException;
@@ -57,7 +57,7 @@ public class CourseService {
     public void uploadVideoToCourse(MultipartFile video, String videoName, int courseId){
         Course course = findCourseById(courseId);
         validateVideo(video, course, videoName);
-        log.info("Uploading video {} to the couse {}", videoName, course.getName());
+        log.info("Uploading video {} to the course {}", videoName, course.getName());
         String pathStr = videoProperties.getPath()+courseId+"/"+video.getOriginalFilename();
         File path = new File(pathStr);
         try {
